@@ -2,10 +2,64 @@ $(document).ready(function () {
     const gridContainer = document.getElementById("gridContainer");
     let div
     let gridSize
+    let color = 'black';
+    let red
+    let green
+    let blue
 
+    // default to 16x16 grid when the page loads
+    resizeGrid(16);    
+
+    // create a new grid of the users choosing when the new grid button is pressed
     const newGridButton = document.getElementById("newGrid");
     newGridButton.addEventListener('click', () => {
-        gridSize = prompt("Enter New Grid Size (e.g. 16 creates a 16x16 grid):")
+        resizeGrid(prompt("Enter Grid Size (e.g. 16 creates a 16x16 grid):"));
+    })
+
+    // clear the entire grid back to all white boxes
+    const clearButton = document.getElementById("clearButton");
+    clearButton.addEventListener('click', () => {
+        gridBoxes.forEach((div) => {
+            div.style.backgroundColor = 'white';
+        })
+    })
+
+    // change selected color to black
+    const gridBlack = document.getElementById('gridBlack');
+    gridBlack.addEventListener('click', () => {
+        color = 'black';
+    })
+
+    // change selected color to white
+    const gridEraser = document.getElementById('gridEraser');
+    gridEraser.addEventListener('click', () => {
+        color = 'white';
+    })
+
+    // change selected color to randomly generated colors
+    const gridRandom = document.getElementById('gridRandom');
+    gridRandom.addEventListener('click', () => {
+        color = 'random';
+    })
+
+    // change hovered-over grid boxes to selected color
+    const gridBoxes = document.querySelectorAll('.gridBox')
+    gridBoxes.forEach((div) => {
+        div.addEventListener('mouseover', () => {
+            if(color === 'random') {
+                red = Math.random() * 255;
+                green = Math.random() * 255;
+                blue = Math.random() * 255;
+                div.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`
+            }
+            else {
+                div.style.backgroundColor = color;
+            }
+        })
+    })
+
+    // create an X-by-X size grid of divs within a 640px-by-640px container div
+    function resizeGrid(gridSize){
         gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, ${640/gridSize}px)`;
         gridContainer.style.gridTemplateRows = `repeat(${gridSize}, ${640/gridSize}px)`;
         for(row = 1; row <= gridSize; row++) {
@@ -20,19 +74,5 @@ $(document).ready(function () {
                 gridContainer.appendChild(div);
             }
         }
-
-        const gridBoxes = document.querySelectorAll('.gridBox')
-        gridBoxes.forEach((div) => {
-            div.addEventListener('mouseover', () => {
-                div.style.backgroundColor = 'black';
-            })
-        })
-
-        const clearButton = document.getElementById("clearButton");
-        clearButton.addEventListener('click', () => {
-            gridBoxes.forEach((div) => {
-                div.style.backgroundColor = 'white';
-            })
-        })
-    })
+    }
 })
