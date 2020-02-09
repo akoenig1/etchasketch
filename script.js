@@ -6,6 +6,9 @@ $(document).ready(function () {
     let red
     let green
     let blue
+    let opacity
+    let currentBackground
+    let currentShade
 
     // default to 16x16 grid when the page loads
     resizeGrid(16);    
@@ -42,6 +45,12 @@ $(document).ready(function () {
         color = 'random';
     })
 
+    // change selected color to grayscale
+    const gridGrayscale = document.getElementById('gridGrayscale');
+    gridGrayscale.addEventListener('click', () => {
+        color = 'grayscale';
+    })
+
     // change hovered-over grid boxes to selected color
     const gridBoxes = document.querySelectorAll('.gridBox')
     gridBoxes.forEach((div) => {
@@ -51,6 +60,26 @@ $(document).ready(function () {
                 green = Math.random() * 255;
                 blue = Math.random() * 255;
                 div.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`
+            }
+            else if(color === 'grayscale') {
+                currentBackground = $(div).css('background-color');
+                currentShade = currentBackground.split(",");
+                if(currentBackground === 'rgb(0, 0, 0)'){
+                    opacity = 1;
+                }
+                else if(!(currentShade[3])){
+                    opacity = 0.1;
+                }
+                else {
+                    currentShade = Number(currentShade[3].replace(')', ''));
+                    if(currentShade === 1) {
+                        opacity = 1;
+                    }
+                    else{
+                        opacity = currentShade + 0.1;
+                    }
+                }
+                div.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
             }
             else {
                 div.style.backgroundColor = color;
