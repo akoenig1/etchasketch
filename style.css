@@ -1,14 +1,81 @@
+body {
+    background-color: rgb(50, 50, 50);
+}
+
+button {
+    border: solid 2px #fff;
+    padding: 10px 20px;
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: medium;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+button:hover {
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+}
+
+#resetContainer {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+#resetContainer button {
+    background-color: rgba(100, 141, 194, 0.534);
+}
+
+#resetContainer button:hover {
+    background-color: #fff;
+    color: rgba(100, 141, 194);
+}
+
+#resetContainer button:focus {
+    outline: none;
+}
+
+#colorContainer {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+#colorContainer button {
+    background-color: rgba(125, 100, 194, 0.534);
+}
+
+#colorContainer button:hover {
+    background-color: #fff;
+    color: rgba(125, 100, 194);
+}
+
+#colorContainer button:focus {
+    background-color: #fff;
+    color: rgba(125, 100, 194);
+    outline: none;
+}
+
+#sketchpad {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+}
+
 #gridContainer {
     display: grid;
     grid-template-columns: repeat(16, 40px);
     grid-template-rows: repeat(16, 40px);
     grid-column-gap: 0;
     grid-row-gap: 0;
-    border: solid 2px black;
-    width: 640px;
-    height: 640px;
+    border: solid 5px rgb(192, 68, 68);
+    width: 600px;
+    height: 600px;
 }
 
 .gridBox {
-    border: solid 1px rgb(50, 50, 50);
+    border: solid 1px rgb(20, 20, 20);
 }

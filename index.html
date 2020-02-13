@@ -8,14 +8,20 @@
         <script src="script.js"></script>
     </head>
     <body>
-        <button id="clearButton">Clear Grid</button>
-        <button id="newGrid">Create New Grid</button>
-        <button id="gridBlack">Black</button>
-        <button id="gridRandom">Random Color</button>
-        <button id="gridGrayscale">Grayscale</button>
-        <button id="gridEraser">Eraser</button>
-        <div id="gridContainer">
+        <div id="resetContainer">
+            <button class="gridResets" id="clearButton">Clear Grid</button>
+            <button class="gridResets" id="newGrid">Create New Grid</button>
+        </div>
+        <div id="colorContainer">
+            <button class="colorOptions" id="gridBlack">Black</button>
+            <button class="colorOptions" id="gridRandom">Random Color</button>
+            <button class="colorOptions" id="gridGrayscale">Grayscale</button>
+            <button class="colorOptions" id="gridEraser">Eraser</button>
+        </div>
+        <div id="sketchpad">
+            <div id="gridContainer">
 
+            </div>
         </div>
     </body>
 </html>
